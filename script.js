@@ -61,7 +61,7 @@ async function fetchSheetData() {
     }
 
     // gid de la hoja "Calendario"
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=2049338348`;
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pub?gid=2049338348&single=true&output=csv`;
 
     try {
         const response = await fetch(url);
