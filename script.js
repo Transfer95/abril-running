@@ -60,11 +60,11 @@ async function fetchSheetData() {
         return OFFLINE_DATA;
     }
 
-    // gid de la hoja "Calendario"
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pub?gid=2049338348&single=true&output=csv`;
+    // Usar Google Visualization API (soporta CORS sin necesidad de "Publicar en la web")
+    const gvizUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=2049338348`;
 
     try {
-        const response = await fetch(url);
+        const response = await fetch(gvizUrl);
         if (!response.ok) throw new Error('Error fetching sheet');
         const csv = await response.text();
         return parseCSV(csv);
