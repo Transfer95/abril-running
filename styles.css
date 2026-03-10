@@ -1,0 +1,426 @@
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-bg: #faf7f2;
+    --color-text: #2d2418;
+    --color-accent: #e8792b;
+    --color-accent-light: #f5a623;
+    --color-disponible: #4caf50;
+    --color-pendiente: #ff9800;
+    --color-confirmado: #e53935;
+    --color-disponible-hover: #388e3c;
+    --color-card-bg: #ffffff;
+    --color-hero-bg: #2d2418;
+    --color-hero-text: #faf7f2;
+    --font: 'Outfit', sans-serif;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ===== Hero ===== */
+.hero {
+    background: var(--color-hero-bg);
+    color: var(--color-hero-text);
+    padding: 4rem 1.5rem 3rem;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-acronym {
+    font-size: clamp(1.8rem, 2.5vw, 1.15rem);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+}
+
+.hero-acronym span {
+    font-weight: 700;
+    color: var(--color-accent-light);
+    -webkit-text-fill-color: var(--color-accent-light);
+}
+
+.hero-description {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+.hero-description p {
+    margin-bottom: 0.8rem;
+}
+
+.hero-cta {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-accent-light);
+    margin-top: 1rem;
+}
+
+/* ===== Calendar Section ===== */
+.calendar-section {
+    max-width: 600px;
+    margin: -1.5rem auto 2rem;
+    padding: 2rem 1.5rem;
+    background: var(--color-card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+/* Legend */
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.legend-dot.disponible { background: var(--color-disponible); }
+.legend-dot.pendiente { background: var(--color-pendiente); }
+.legend-dot.confirmado { background: var(--color-confirmado); }
+
+/* Weekday headers */
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.calendar-weekdays div {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #999;
+    padding: 0.3rem 0;
+}
+
+/* Calendar grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+}
+
+.calendar-day.empty {
+    background: transparent;
+}
+
+.calendar-day.disponible {
+    background: var(--color-disponible);
+    color: white;
+    cursor: pointer;
+}
+
+.calendar-day.disponible:hover {
+    background: var(--color-disponible-hover);
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(76, 175, 80, 0.35);
+}
+
+.calendar-day.pendiente {
+    background: var(--color-pendiente);
+    color: white;
+    cursor: default;
+}
+
+.calendar-day.confirmado {
+    background: var(--color-confirmado);
+    color: white;
+    cursor: default;
+}
+
+.calendar-day .day-name {
+    font-size: 0.55rem;
+    font-weight: 400;
+    opacity: 0.85;
+    margin-top: 2px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 2px;
+}
+
+/* Loading */
+.loading-msg {
+    text-align: center;
+    color: #999;
+    font-size: 0.9rem;
+    padding: 1rem;
+}
+
+.loading-msg.hidden,
+.form.hidden {
+    display: none;
+}
+
+/* ===== Modal ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    padding: 1rem;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    background: var(--color-card-bg);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.25s ease;
+}
+
+.modal-overlay.active .modal {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #999;
+    line-height: 1;
+    transition: color 0.15s;
+}
+
+.modal-close:hover {
+    color: var(--color-text);
+}
+
+.modal-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Form */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea {
+    font-family: var(--font);
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+    border: 2px solid #e0dbd4;
+    border-radius: 8px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    transition: border-color 0.15s;
+    outline: none;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--color-accent);
+}
+
+.form-group input.error,
+.form-group textarea.error {
+    border-color: var(--color-confirmado);
+}
+
+.form-submit {
+    font-family: var(--font);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--color-accent);
+    color: white;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    margin-top: 0.5rem;
+}
+
+.form-submit:hover {
+    background: #d06820;
+}
+
+.form-submit:active {
+    transform: scale(0.98);
+}
+
+.form-submit:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Success message */
+.form-success {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+.form-success.hidden {
+    display: none;
+}
+
+.success-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-success h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-disponible);
+}
+
+.form-success p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 0.3rem;
+}
+
+/* ===== Footer ===== */
+.footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+    .hero {
+        padding: 3rem 1rem 2.5rem;
+    }
+
+    .calendar-section {
+        margin: -1rem 0.5rem 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .calendar-day {
+        font-size: 0.95rem;
+        border-radius: 8px;
+    }
+
+    .calendar-day .day-name {
+        font-size: 0.45rem;
+    }
+
+    .legend {
+        gap: 1rem;
+    }
+
+    .modal {
+        padding: 1.5rem 1rem;
+    }
+
+    .modal-form-container iframe {
+        height: 450px;
+    }
+}
