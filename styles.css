@@ -392,6 +392,27 @@ body {
     color: #999;
 }
 
+.day-photo {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+.day-km {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 480px) {
     .hero {

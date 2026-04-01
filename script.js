@@ -93,6 +93,8 @@ function parseCSV(csv) {
             nombre: (cols[2] || '').trim(),
             hora: (cols[3] || '').trim(),
             lugar: (cols[4] || '').trim(),
+            foto: (cols[5] || '').trim(),
+            km: (cols[6] || '').trim(),
         };
     }
 
@@ -143,7 +145,21 @@ function renderCalendar(data) {
         dayNum.textContent = day;
         cell.appendChild(dayNum);
 
+        // Si hay foto, mostrar miniatura
+        if (estado === 'confirmado' && dayData.foto) {
+            const img = document.createElement('img');
+            img.src = dayData.foto;
+            img.className = 'day-photo';
+            cell.appendChild(img);
+        }
 
+        // Si hay km, mostrar texto
+        if (estado === 'confirmado' && dayData.km) {
+            const kmEl = document.createElement('div');
+            kmEl.className = 'day-km';
+            kmEl.textContent = `${dayData.km} km`;
+            cell.appendChild(kmEl);
+        }
 
         if (estado === 'disponible') {
             cell.addEventListener('click', () => openModal(day));
