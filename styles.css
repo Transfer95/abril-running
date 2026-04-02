@@ -194,9 +194,13 @@ body {
     cursor: default;
 }
 
+.calendar-day:has(img) span, .calendar-day:has(img) .day-km {
+    color: #9e06ff;
+}
+
 .calendar-day.confirmado {
     background: var(--color-confirmado);
-    color: #9e06ff;
+    color: white;
     cursor: default;
 }
 
