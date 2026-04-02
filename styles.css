@@ -196,7 +196,7 @@ body {
 
 .calendar-day.confirmado {
     background: var(--color-confirmado);
-    color: white;
+    color: #9e06ff;
     cursor: default;
 }
 
