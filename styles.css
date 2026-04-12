@@ -414,6 +414,7 @@ body {
 
 .day-km {
     z-index: 2;
+    font-size: 10px;
 }
 
 /* ===== Responsive ===== */
